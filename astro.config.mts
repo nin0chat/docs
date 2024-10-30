@@ -28,7 +28,12 @@ export default defineConfig({
                 github: "https://github.com/nin0chat",
                 discord: "https://discord.gg/yJzpa68Pnh"
             },
-            sidebar: []
+            sidebar: [
+                {
+                    label: "Getting Started",
+                    autogenerate: { directory: "getting-started" }
+                }
+            ]
         })
     ],
 
