@@ -1,0 +1,38 @@
+/* Dark mode colors. */
+:root {
+    --sl-color-accent-low: #1d4064;
+    --sl-color-accent: #49a1fa;
+    --sl-color-accent-high: #99ceff;
+    --sl-color-white: #ffffff;
+    --sl-color-gray-1: #a0a6b1;
+    --sl-color-gray-2: #848c9a;
+    --sl-color-gray-3: #6a7381;
+    --sl-color-gray-4: #535a65;
+    --sl-color-gray-5: #3c4149;
+    --sl-color-gray-6: #25282d;
+    --sl-color-black: #181818;
+}
+
+/* Light mode colors. */
+:root[data-theme="light"] {
+    --sl-color-accent-low: #cce6ff;
+    --sl-color-accent: #2684e6;
+    --sl-color-accent-high: #28598a;
+    --sl-color-white: #181818;
+    --sl-color-gray-1: #4e545f;
+    --sl-color-gray-2: #656e7b;
+    --sl-color-gray-3: #7e8795;
+    --sl-color-gray-4: #9aa1ac;
+    --sl-color-gray-5: #b6bbc3;
+    --sl-color-gray-6: #d2d5da;
+    --sl-color-black: #ffffff;
+}
+
+.sl-markdown-content :is(h1, h2, h3, h4, h5, h6) > a {
+    color: var(--sl-color-white);
+    text-decoration: none;
+}
+
+.sl-markdown-content :is(h1, h2, h3, h4, h5, h6) > a:hover {
+    text-decoration: underline;
+}
