@@ -11,6 +11,8 @@
     --sl-color-gray-5: #3c4149;
     --sl-color-gray-6: #25282d;
     --sl-color-black: #181818;
+    --sl-content-width: 100%;
+    --sl-content-pad-x: 3rem
 }
 
 /* Light mode colors. */
@@ -36,3 +38,8 @@
 .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) > a:hover {
     text-decoration: underline;
 }
+
+.right-sidebar-container {
+    width: 20rem;
+}
+

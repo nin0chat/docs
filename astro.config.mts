@@ -23,7 +23,7 @@ export default defineConfig({
             },
             favicon: "favicon.png",
             lastUpdated: true,
-            customCss: ["./src/style/custom.css"],
+            customCss: ["./src/style/custom.css", "./src/style/table.scss"],
             social: {
                 github: "https://github.com/nin0chat",
                 discord: "https://discord.gg/yJzpa68Pnh"
@@ -50,5 +50,15 @@ export default defineConfig({
             ]
         ],
         remarkPlugins: ["remark-supersub"]
+    },
+
+    vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: "modern-compiler"
+                }
+            }
+        }
     }
 });
