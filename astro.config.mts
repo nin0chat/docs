@@ -48,6 +48,7 @@ export default defineConfig({
                     behavior: "wrap"
                 }
             ]
-        ]
+        ],
+        remarkPlugins: ["remark-supersub"]
     }
 });
