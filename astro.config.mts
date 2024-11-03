@@ -24,10 +24,14 @@ export default defineConfig({
             },
             favicon: "favicon.png",
             lastUpdated: true,
+            pagination: false,
             customCss: ["./src/style/custom.css", "./src/style/table.scss"],
             social: {
                 github: "https://github.com/nin0chat",
                 discord: "https://discord.gg/yJzpa68Pnh"
+            },
+            tableOfContents: {
+                maxHeadingLevel: 4
             },
             sidebar: [
                 {
@@ -35,7 +39,16 @@ export default defineConfig({
                     autogenerate: { directory: "getting-started" }
                 },
                 {
-                    label: "Entities",
+                    label: "API Methods",
+                    items: [
+                        {
+                            label: "auth",
+                            slug: "methods/auth"
+                        }
+                    ]
+                },
+                {
+                    label: "API Entities",
                     autogenerate: { directory: "entities" }
                 }
             ]

@@ -12,7 +12,6 @@
     --sl-color-gray-6: #25282d;
     --sl-color-black: #181818;
     --sl-content-width: 100%;
-    --sl-content-pad-x: 3rem
 }
 
 /* Light mode colors. */
@@ -43,3 +42,8 @@
     width: 20rem;
 }
 
+@media screen and (min-width: 75em) {
+    :root {
+        --sl-content-pad-x: 3rem
+    }
+}

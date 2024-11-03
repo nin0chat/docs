@@ -1,0 +1,98 @@
+---
+title: Auth API Methods
+description: Routes used to handle authentication
+---
+
+This collection of methods is used to sign in to or create a user account.
+
+import RouteHeader from "@ninochat-docs/components/RouteHeader.astro";
+
+#### Sign In
+
+<RouteHeader route="/auth/login" method="POST" />
+
+Logs in to a users account.
+
+##### JSON Body
+
+| Field    | Type   | Description                           |
+| -------- | ------ | ------------------------------------- |
+| email    | string | The email associated with the account |
+| password | string | The password to the account           |
+
+###### Example Body
+
+```json
+{
+    "email": "user@example.com",
+    "password": "password"
+}
+```
+
+##### Response Body
+
+| Field | Type      | Description                                                |
+| ----- | --------- | ---------------------------------------------------------- |
+| id    | snowflake | The id of the logged in user                               |
+| token | string    | The token used to authenticate the user in future requests |
+
+###### Example Response
+
+```json
+{
+    "id": "3305938962411520",
+    "token": "3305938962411520.312657.ljvNB3xhXhFObwZQqyHxJ90XV6gcRP7VrO8VXiVpSdtI6cbpvPG4NJCNcECgA3AuPTr14CTPfGbAVpD"
+}
+```
+
+---
+
+#### Sign Up
+
+<RouteHeader route="/auth/signup" method="POST" />
+
+Creates a new account, returns a 201 empty response on success.
+
+:::caution
+This route is not recommended for general use, instead users should be
+directed to our [signup page](https://chat.nin0.dev/signup).
+:::
+
+##### JSON Body
+
+| Field        | Type   | Description                                                                                                                          |
+| ------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| username     | string | The desired username for the user                                                                                                    |
+| email        | string | The email used to log in and verifiy the account                                                                                     |
+| password     | string | The password used to log in to the account                                                                                           |
+| turnstileKey | string | Key returned upon successfully completing a [Turnstile](https://www.cloudflare.com/application-services/products/turnstile/) captcha |
+
+###### Example Body
+
+```json
+{
+    "username": "user",
+    "email": "user@example.com",
+    "password": "password",
+    "turnstileKey": "jYy5mcKhmICylqiGs3y..."
+}
+```
+
+---
+
+#### Confirm Email
+
+<RouteHeader route="/auth/confirm" method="GET" />
+
+Verifies the email address used to create an account. Redirects to the [login page](https://chat.nin0.dev/login) when successful.
+
+:::caution
+This route is only sent as a link when going through
+the email verification flow. It is not a route that should be implemented in any client.
+:::
+
+##### Query Params
+
+| Name  | Type   | Description                                     |
+| ----- | ------ | ----------------------------------------------- |
+| token | string | The verification token sent to an email address |

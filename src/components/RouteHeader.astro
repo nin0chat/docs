@@ -1,0 +1,57 @@
+---
+const methodColors = {
+    GET: "#2684E6",
+    POST: "#00CC70",
+    PATCH: "#DD9934",
+    PUT: "#DD9934",
+    DELETE: "#FF3636"
+};
+
+interface Props {
+    route: string;
+    method: "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
+}
+const { route, method } = Astro.props;
+
+const methodColor = methodColors[method];
+---
+
+<div class="container">
+    <code class="method">{method}</code>
+    <code class="route">{route}</code>
+</div>
+
+<style define:vars={{ methodColor }}>
+    .container {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+    }
+
+    .method {
+        color: var(--methodColor) !important;
+        background: color-mix(in srgb, var(--methodColor) 15%, transparent) !important; /* Fades the method-specific tint */
+        font-size: medium !important;
+        border: 1px solid var(--methodColor);
+        border-radius: 2em;
+        padding: 0.15em 0.6em !important;
+        font-weight: bold;
+        line-height: 2em;
+    }
+
+    .route {
+        color: var(--sl-color-white) !important;
+        background: transparent !important;
+        font-size: large !important;
+        margin: 0.25em;
+    }
+
+    @media screen and (max-width: 75em) { /* Mobile optimizations */
+        .method {
+            font-size: small !important;
+            line-height: 2.6em;
+            border-radius: 2.6em;
+            padding: 0 0.6em !important;
+        }
+    }
+</style>
