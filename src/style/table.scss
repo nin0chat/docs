@@ -8,41 +8,49 @@
 
 .sl-markdown-content {
     table {
-        width: 100%;
-        max-width: 100%;
+        min-width: 100%;
         display: table;
+        vertical-align: middle !important;
         border: 1px solid var(--sl-color-hairline);
-        font-size: 13px;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        overflow-wrap: break-word;
 
-        th { // Column Header
+        code { 
+            // Inline code blocks override the text wrapping
+            // behavior, in tables it looks ugly
+            overflow-wrap: break-word !important;
+        }
+
+        th {
+            // Column Header
             background-color: var(--sl-color-gray-6);
-            vertical-align: bottom;
             font-weight: bold;
         }
 
-        tr { // Row
-            display: flex;
-            -webkit-box-orient: horizontal;
-            -webkit-box-direction: normal;
-            flex-direction: row;
-            margin-top: 0!important;
+        tr {
+            // Row
+            margin-top: 0 !important;
 
-            &:nth-of-type(odd) { // Add slight highlight on alternating rows
+            &:nth-of-type(odd) {
+                // Add slight highlight on alternating rows
                 background-color: var(--nc-table-row-tint);
             }
         }
     }
 
-    th, td {
-        display: block;
-        flex: 1 1;
-        padding: 0.75rem!important;
-        margin-top: 0!important;
+    th,
+    td {
+        display: table-cell;
+        padding: 0.75rem !important;
+        margin-top: 0 !important;
         border-bottom: none;
+        max-width: 20rem;
+        vertical-align: middle;
     }
 
-    thead { // Table header
+    thead {
+        // Table header
         font-weight: bold;
-        vertical-align: middle;
     }
 }

@@ -3,6 +3,8 @@ title: API Reference
 description: What you need to know before using the API
 ---
 
+import ScrollableTable from "@ninochat-docs/components/ScrollableTable.astro"
+
 The nin0chat API comprises both an HTTP/REST API and a WebSocket API. All request and response bodies are in JSON format, unless specified otherwise.
 
 ##### Base URL
@@ -59,10 +61,11 @@ nin0chat utilizes Twitter's [snowflake](https://github.com/twitter/snowflake/tre
 ```
 
 ###### Snowflake ID Format Structure (Left to Right)
-
+<ScrollableTable>
 | Field               | Bits     | Number of bits | Description                                                                | Retrieval                           |
 | ------------------- | -------- | -------------- | -------------------------------------------------------------------------- | ----------------------------------- |
 | Timestamp           | 63 to 22 | 42 bits        | Milliseconds since the nin0chat epoch, or `1729373102932`.                 | `(snowflake >> 22) + 1729373102932` |
 | Internal worker ID  | 21 to 17 | 5 bits         |                                                                            | `(snowflake & 0x3E0000) >> 17`      |
 | Internal process ID | 16 to 12 | 5 bits         |                                                                            | `(snowflake & 0x1F000) >> 12`       |
 | Increment           | 11 to 0  | 12 bits        | For every ID that is generated on that process, this number is incremented | `snowflake & 0xFFF`                 |
+</ScrollableTable>
