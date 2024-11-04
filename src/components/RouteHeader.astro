@@ -1,4 +1,6 @@
 ---
+import Badge from "./Badge.astro";
+
 const methodColors = {
     GET: "#2684E6",
     POST: "#00CC70",
@@ -10,27 +12,98 @@ const methodColors = {
 interface Props {
     route: string;
     method: "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
+
+    // Badges
+    unauthenticated?: boolean;
+    userOnly?: boolean;
+    botOnly?: boolean;
+    internal?: boolean;
+    deprecated?: boolean;
 }
-const { route, method } = Astro.props;
+const { route, method, unauthenticated, userOnly, botOnly, internal, deprecated } = Astro.props;
 
 const methodColor = methodColors[method];
 ---
 
-<div class="container">
-    <code class="method">{method}</code>
-    <code class="route">{route}</code>
+<div>
+    <div class="route-container">
+        <code class="method">{method}</code>
+        <code class="route">{route}</code>
+    </div>
+    <div class="badge-container">
+        {
+            internal ? (
+                <Badge
+                    label="Internal"
+                    description="This route should not be implemented by non-official clients"
+                    link="/docs/getting-started/doc-reference#internal"
+                />
+            ) : null
+        }
+
+        {
+            unauthenticated ? (
+                <Badge
+                    label="Unauthenticated"
+                    description="Does not require the authorization header to be set"
+                    link="/docs/getting-started/doc-reference#unauthenticated"
+                />
+            ) : null
+        }
+
+        {
+            userOnly ? (
+                <Badge
+                    label="Users Only"
+                    description="This route will work only for users and not for bots"
+                    link="/docs/getting-started/doc-reference#user-only"
+                />
+            ) : null
+        }
+
+        {
+            botOnly ? (
+                <Badge
+                    label="Bots Only"
+                    description="This route can only be executed by a bot account"
+                    link="/docs/getting-started/doc-reference#bot-only"
+                />
+            ) : null
+        }
+
+        {
+            deprecated ? (
+                <Badge
+                    label="Deprecated"
+                    description="This route is pending removal and should be avoided"
+                    link="/docs/getting-started/doc-reference#deprecated"
+                />
+            ) : null
+        }
+    </div>
 </div>
 
 <style define:vars={{ methodColor }}>
-    .container {
+    .route-container {
         display: flex;
         flex-direction: row;
         align-content: center;
     }
 
+    .badge-container {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        gap: 0.5rem;
+    }
+
     .method {
         color: var(--methodColor) !important;
-        background: color-mix(in srgb, var(--methodColor) 15%, transparent) !important; /* Fades the method-specific tint */
+        background: color-mix(
+            in srgb,
+            var(--methodColor) 15%,
+            transparent
+        ) !important; /* Fades the method-specific tint */
         font-size: medium !important;
         border: 1px solid var(--methodColor);
         border-radius: 2em;
@@ -46,7 +119,8 @@ const methodColor = methodColors[method];
         margin: 0.25em;
     }
 
-    @media screen and (max-width: 75em) { /* Mobile optimizations */
+    @media screen and (max-width: 75em) {
+        /* Mobile optimizations */
         .method {
             font-size: small !important;
             line-height: 2.6em;

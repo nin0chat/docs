@@ -9,7 +9,7 @@ import RouteHeader from "@ninochat-docs/components/RouteHeader.astro";
 
 #### Sign In
 
-<RouteHeader route="/auth/login" method="POST" />
+<RouteHeader route="/auth/login" method="POST" unauthenticated/>
 
 Logs in to a users account.
 
@@ -49,7 +49,7 @@ Logs in to a users account.
 
 #### Sign Up
 
-<RouteHeader route="/auth/signup" method="POST" />
+<RouteHeader route="/auth/signup" method="POST" internal unauthenticated/>
 
 Creates a new account, returns a 201 empty response on success.
 
@@ -82,7 +82,7 @@ directed to our [signup page](https://chat.nin0.dev/signup).
 
 #### Confirm Email
 
-<RouteHeader route="/auth/confirm" method="GET" />
+<RouteHeader route="/auth/confirm" method="GET" internal unauthenticated/>
 
 Verifies the email address used to create an account. Redirects to the [login page](https://chat.nin0.dev/login) when successful.
 

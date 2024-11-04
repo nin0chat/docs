@@ -1,0 +1,26 @@
+---
+interface Props {
+    label: string;
+    description: string;
+    link?: string;
+}
+const {label, link, description} = Astro.props
+---
+
+<a href={link} class="badge">
+    <abbr title={description} style="text-decoration: none;">
+        {label}
+    </abbr>
+</a>
+
+<style>
+    .badge {
+        font-family: monospace;
+        color: var(--sl-color-text) !important;
+        background: var(--sl-color-gray-6);
+        padding: 0.14em 0.7em;
+        border-radius: 10em;
+        font-size: 0.75rem;
+        text-decoration: none;
+    }
+</style>

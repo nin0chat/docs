@@ -24,14 +24,17 @@ See the table below for an example.
 ## Badges
 Some requests will have badges that concisely define common behaviors.
 
-###### Auth Required
-Denotes that the endpoint requires authorization.
+###### Unauthenticated
+Denotes that the endpoint does not require authorization.
 
 ###### User Only
 Only works for normal user accounts and will not work with bot accounts.
 
 ###### Bot Only
 Only works for bot accounts and is not available for normal users.
+
+###### Internal
+Only designed to be used by official clients. Should not be implemented in any bot or third-party client.
 
 ###### Deprecated
 Denotes that a route is deprecated. This means that although its still functional, it will be removed sometime in the future.
